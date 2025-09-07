@@ -1,0 +1,104 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  background: #F4F4F4;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Header */
+header {
+  background: #4B3832; /* Coffee brown */
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+header .highlight {
+  color: #D9B08C; /* Warm beige */
+}
+
+/* Navigation */
+nav {
+  background: #333; /* Dark gray */
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 0.5rem;
+}
+
+nav a {
+  color: #D9B08C;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: white;
+}
+
+/* Main Layout */
+main {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1rem;
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.card {
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.card h2 {
+  background: #6B4F4F; /* Soft brown */
+  color: white;
+  padding: 0.5rem;
+  border-radius: 6px;
+  margin-top: 0;
+}
+
+/* About section */
+.about-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1rem;
+  align-items: start;
+}
+
+.profile-pic {
+  max-width: 100%;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.flag-info img {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  background: #4B3832; /* Coffee brown */
+  color: white;
+  padding: 1rem;
+}
+
+footer p {
+  margin: 0.25rem;
+}
+
+#lastModified {
+  color: #D9B08C; /* Accent beige */
+}
