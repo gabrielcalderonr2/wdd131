@@ -1,0 +1,137 @@
+/* Global variables */
+:root{
+  --flag-blue: #00247d;   /* header */
+  --flag-yellow: #ffcc00; /* footer */
+  --flag-red: #d62828;    /* accents */
+  --text: #222;
+  --muted-bg: #f5f5f5;
+  --card-bg: rgba(255,255,255,0.85);
+  --card-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  --max-card-width: 340px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  background: var(--muted-bg);
+  color: var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* Header */
+header{
+  background: var(--flag-blue);
+  color: #fff;
+  text-align:center;
+  padding: 28px 12px;
+}
+header h1{
+  margin:0;
+  font-size: clamp(1.8rem, 4vw, 3.2rem);
+  letter-spacing: 0.6px;
+}
+
+/* MAIN: hero wrapper fills full width */
+main{ width:100%; margin:0; }
+
+/* HERO WRAP - contains the responsive picture and overlay cards */
+.hero-wrap{
+  position: relative;
+  width:100%;
+  overflow: hidden; 
+}
+
+/* picture/img : force it to cover and fill horizontally */
+.hero-wrap img.hero-img {
+  width: 100%;
+  height: auto;       /* try this first */
+  max-height: 70vh;   /* optional limit */
+  object-fit: cover;
+}
+
+
+
+/* Small screen height */
+@media (max-width:599px){
+  .hero-wrap img.hero-img{ height: 320px; }
+}
+
+/* Cards that overlay the hero */
+.card{
+  position: absolute;
+  background: var(--card-bg);
+  padding: 18px;
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+  max-width: var(--max-card-width);
+  z-index: 10;
+  backdrop-filter: blur(2px);
+}
+
+/* left Data card */
+.data-card{
+  top: 40px;
+  left: 28px;
+}
+
+/* right Weather card */
+.weather-card{
+  top: 40px;
+  right: 28px;
+  text-align: left;
+}
+
+/* Heading style inside cards */
+.card h2{
+  margin: 0 0 10px 0;
+  font-size: 1.4rem;
+  background: linear-gradient(90deg, rgba(0,0,0,0.03), rgba(0,0,0,0.02));
+  padding: 8px 10px;
+  border-radius: 4px;
+}
+
+/* Weather pseudo icon for wide view: use pseudo element on heading */
+@media (min-width:800px){
+  .weather-card h2::after{
+    content: " ⛅";  /* emoticon required for wider view */
+    margin-left: 6px;
+  }
+  /* hide the inline svg icon in wide view (we show emoticon instead) */
+  .weather-svg{ display:none; }
+}
+
+/* On smaller screens we don't overlay; stack content below hero */
+@media (max-width:799px){
+  .card{
+    position: static;
+    width: auto;
+    max-width: none;
+    margin: 12px;
+  }
+  /* move svg visible in mobile */
+  .weather-svg{ display:block; width:48px; margin: 6px 0; }
+}
+
+/* Card lists */
+.card ul{
+  list-style: none;
+  padding:0;
+  margin:0;
+}
+.card li{
+  margin: 8px 0;
+  line-height: 1.3;
+}
+
+/* Footer */
+footer{
+  background: var(--flag-yellow);
+  padding: 18px 12px;
+  text-align:center;
+  color:#000;
+  border-top: 6px solid var(--flag-red);
+}
+footer p{ margin:4px 0; font-size:0.95rem; }

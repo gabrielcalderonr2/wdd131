@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ecuador - Place Page</title>
+
+  <!-- update path if your css folder is different -->
+  <link rel="stylesheet" href="styles/place.css">
+  <script src="scripts/place.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Ecuador</h1>
+  </header>
+
+  <main>
+   
+    <div class="hero-wrap">
+      <picture>
+        <!-- load large image on wide screens, medium on tablet, small on mobile -->
+        <picture>
+        <source srcset="images/ecuador-large3.webp" media="(min-width: 1200px)">
+        <source srcset="images/ecuador-medium3.webp" media="(min-width: 800px)">
+         <img src="images/ecuador-small.webp" alt="Ecuador landscape" class="hero-img">
+        </picture>
+
+      <!-- Data card (overlay) -->
+      <aside class="card data-card" aria-labelledby="data-heading">
+        <h2 id="data-heading">Data</h2>
+        <ul>
+          <li><strong>Capital:</strong> Quito</li>
+          <li><strong>Population:</strong> 17.8 million</li>
+          <li><strong>Language:</strong> Spanish</li>
+          <li><strong>Currency:</strong> US Dollar (USD)</li>
+          <li><strong>Continent:</strong> South America</li>
+          <li><strong>Famous Landmark:</strong> Galápagos Islands</li>
+          <li><strong>Time Zone:</strong> UTC-5</li>
+          <li><strong>Calling Code:</strong> +593</li>
+          <li><strong>Internet TLD:</strong> .ec</li>
+        </ul>
+      </aside>
+
+      <!-- Weather card (overlay) -->
+      <aside class="card weather-card" aria-labelledby="weather-heading">
+        <h2 id="weather-heading">Weather <span class="weather-emoji" aria-hidden="true"></span></h2>
+
+        <!-- SVG icon (mobile / small displays) -->
+        <img src="images/cloudy.svg" alt="Cloudy weather icon" class="weather-svg" />
+
+        <ul>
+          <li><strong>Temperature:</strong> <span id="temp">9</span> °C</li>
+          <li><strong>Wind Speed:</strong> <span id="wind">12</span> km/h</li>
+          <li><strong>Conditions:</strong> Partly Cloudy</li>
+          <li><strong>Wind Chill:</strong> <span id="chill"></span></li>
+        </ul>
+      </aside>
+    </div> <!-- /.hero-wrap -->
+  </main>
+
+  <footer>
+    <p>&copy; <span id="year"></span> Ecuador Page | Gabriel Calderón</p>
+    <p>Last modified: <span id="lastModified"></span></p>
+  </footer>
+</body>
+</html>
