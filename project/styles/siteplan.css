@@ -1,0 +1,17 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: #333333;
+  background-color: #fff;
+  margin: 20px;
+}
+
+h1, h2 {
+  font-family: 'Montserrat', sans-serif;
+  color: #006400;
+}
+
+header, footer {
+  background-color: #FFD700;
+  padding: 10px;
+  text-align: center;
+}
