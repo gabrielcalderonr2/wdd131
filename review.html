@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Review Confirmation</title>
+  <link rel="stylesheet" href="styles/review.css">
+  <script src="scripts/review.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Review <span class="highlight">Submitted</span></h1>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>Thank You!</h2>
+      <p>Your review has been submitted successfully.</p>
+      <p>You have submitted <strong><span id="reviewCounter">0</span></strong> review(s).</p>
+
+      <!-- New Button -->
+      <button class="submit-btn" onclick="window.location.href='form.html'">
+        Submit Another Review
+      </button>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; Review | Gabriel Calderon</p>
+    <p id="lastModified"></p>
+  </footer>
+
+  <script>
+    document.getElementById("lastModified").textContent =
+      "Last Modification: " + document.lastModified;
+  </script>
+</body>
+</html>
