@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Flavors of Ecuador — explore traditional dishes, regional foods, recipes and fun facts." />
+  <meta name="author" content="Gabriel Calderon" />
+  <title>Flavors of Ecuador — Home</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <img src="images/siteplanlogo.png" alt="Flavors of Ecuador logo" class="logo" width="84" height="84">
+      <div>
+        <h1 class="site-title">Flavors of Ecuador</h1>
+        <p class="site-tag">Traditional dishes, recipes and regional tastes</p>
+      </div>
+    </div>
+
+    <nav class="main-nav" role="navigation" aria-label="Main navigation">
+      <button class="nav-toggle" aria-expanded="false" aria-controls="navList">☰</button>
+      <ul id="navList" class="nav-list">
+        <li><a href="index.html" data-link>Home</a></li>
+        <li><a href="regional.html" data-link>Regional Foods</a></li>
+        <li><a href="recipes.html" data-link>Recipes</a></li>
+        <li><a href="funfacts.html" data-link>Fun Facts</a></li>
+        <li><a href="contact.html" data-link>Contact</a></li>
+        <li><a href="references.html" data-link>References</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main" class="page-grid" role="main">
+    <!-- Introduction -->
+    <section class="intro" id="intro">
+      <h2>Welcome to Flavors of Ecuador</h2> 
+      <p>Discover the food traditions of the Coast, Sierra (highlands), and Amazon regions. Find popular dishes, simple recipes to try at home, and fun facts about Ecuador's culinary heritage.</p>
+    </section>
+
+    <!-- Popular dishes (dynamic) -->
+    <section class="popular-dishes" aria-labelledby="popular-heading">
+      <h2 id="popular-heading">Popular Dishes</h2><br><br>
+
+      <div class="controls"><br><br><br>
+        <label for="search">Search dishes</label>
+        <input id="search" type="search" placeholder="e.g. ceviche, locro" aria-controls="cardsContainer">
+        <label for="filter">Filter</label>
+        <select id="filter" aria-controls="cardsContainer">
+          <option value="all">All regions</option>
+          <option value="coast">Coast</option>
+          <option value="sierra">Sierra</option>
+          <option value="amazon">Amazon</option>
+        </select>
+      </div>
+
+      <div id="cardsContainer" class="cards-grid" aria-live="polite">
+        <!-- Cards injected by script.js -->
+      </div>
+    </section>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" aria-labelledby="sidebar-title">
+      <h3 id="sidebar-title">Your Activity</h3>
+      <p>Visits: <span id="visitCount">0</span></p>
+      <p>Favorites: <span id="favCount">0</span></p>
+      <button id="clearFavs">Clear favorites</button>
+    </aside>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <p>© <span id="year"></span> Flavors of Ecuador — Gabriel Calderon</p>
+    <p><a href="references.html">References</a> (images & sources)</p>
+  </footer>
+
+  <script src="scripts/script.js" defer></script>
+</body>
+</html>

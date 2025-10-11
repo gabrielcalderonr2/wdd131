@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact — Flavors of Ecuador</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Open+Sans:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <img src="images/siteplanlogo.png" alt="logo" class="logo" width="84" height="84">
+      <div>
+        <h1 class="site-title">Flavors of Ecuador</h1>
+        <p class="site-tag">Contact</p>
+      </div>
+    </div>
+
+    <nav class="main-nav" role="navigation" aria-label="Main navigation">
+      <button class="nav-toggle" aria-expanded="false" aria-controls="navList">☰</button>
+      <ul id="navList" class="nav-list">
+        <li><a href="index.html" data-link>Home</a></li>
+        <li><a href="regional.html" data-link>Regional Foods</a></li>
+        <li><a href="recipes.html" data-link>Recipes</a></li>
+        <li><a href="funfacts.html" data-link>Fun Facts</a></li>
+        <li><a href="contact.html" data-link class="active">Contact</a></li>
+        <li><a href="references.html" data-link>References</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="page-grid">
+    <section class="contact-section">
+      <h2>Contact & Feedback</h2>
+      <form id="contactForm" novalidate>
+        <label for="fullname">Full name</label>
+        <input id="fullname" name="fullname" type="text" required minlength="2">
+
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required>
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" required minlength="8"></textarea>
+
+        <div class="form-actions">
+          <button type="submit">Send (saved locally)</button>
+          <button type="button" id="clearMessages">Clear saved</button>
+        </div>
+      </form>
+
+      <div id="contactStatus" role="status" aria-live="polite"></div>
+    </section>
+
+    <aside class="sidebar">
+      <h3>Saved messages</h3>
+      <ul id="messagesList" aria-live="polite">
+        <!-- injected -->
+      </ul>
+    </aside>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year5"></span> Flavors of Ecuador — <a href="references.html">References</a></p>
+  </footer>
+
+  <script src="scripts/script.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Recipes — Flavors of Ecuador</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Open+Sans:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <img src="images/siteplanlogo.png" alt="logo" class="logo" width="84" height="84">
+      <div>
+        <h1 class="site-title">Flavors of Ecuador</h1>
+        <p class="site-tag">Recipes</p>
+      </div>
+    </div>
+
+    <nav class="main-nav" role="navigation" aria-label="Main navigation">
+      <button class="nav-toggle" aria-expanded="false" aria-controls="navList">☰</button>
+      <ul id="navList" class="nav-list">
+        <li><a href="index.html" data-link>Home</a></li>
+        <li><a href="regional.html" data-link>Regional Foods</a></li>
+        <li><a href="recipes.html" data-link class="active">Recipes</a></li>
+        <li><a href="funfacts.html" data-link>Fun Facts</a></li>
+        <li><a href="contact.html" data-link>Contact</a></li>
+        <li><a href="references.html" data-link>References</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="page-grid">
+    <section class="recipes-section">
+      <h2>Try these simple recipes</h2>
+
+      <div id="recipesList" class="cards-grid" aria-live="polite">
+        <!-- JS will inject recipe cards (built with template literals) -->
+      </div>
+
+      <div class="recipe-controls">
+        <h3>Add a personal recipe (stored locally)</h3>
+        <form id="recipeForm" novalidate>
+          <label for="r-title">Title</label>
+          <input id="r-title" name="title" required minlength="2">
+
+          <label for="r-region">Region</label>
+          <select id="r-region" name="region" required>
+            <option value="">Choose</option>
+            <option value="coast">Coast</option>
+            <option value="sierra">Sierra</option>
+            <option value="amazon">Amazon</option>
+          </select>
+
+          <label for="r-ingredients">Ingredients (comma separated)</label>
+          <textarea id="r-ingredients" name="ingredients" rows="3" required></textarea>
+
+          <label for="r-instructions">Instructions</label>
+          <textarea id="r-instructions" name="instructions" rows="4" required></textarea>
+
+          <div class="form-actions">
+            <button type="submit">Save Recipe</button>
+            <button type="button" id="clearRecipes">Clear Saved</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <aside class="sidebar saved-recipes" aria-labelledby="saved-title">
+      <h3 id="saved-title">Saved Recipes</h3>
+      <ul id="savedList" aria-live="polite">
+        <!-- saved entries injected by JS -->
+      </ul>
+    </aside>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year3"></span> Flavors of Ecuador — <a href="references.html">References</a></p>
+  </footer>
+
+  <script src="scripts/script.js" defer></script>
+</body>
+</html>
