@@ -9,7 +9,7 @@
 */
 
 (() => {
-  // ---------- Sample data (objects + arrays) ----------
+  // ---------- Sample data ----------
   const dishes = [
     { id: 1, title: "Ceviche", region: "coast", img: "images/ceviche.jpg", text: "Fresh seafood marinated in lime, served with onions and cilantro." },
     { id: 2, title: "Locro de Papa", region: "sierra", img: "images/locro.jpg", text: "Potato and cheese soup from the Andes — warm and hearty." },
@@ -48,7 +48,7 @@
     const arr = getFavs();
     const idx = arr.indexOf(id);
     if (idx === -1) arr.push(id);
-    else arr.splice(idx,1);
+    else arr.splice(idx, 1);
     setFavs(arr);
   }
   function refreshFavCount() {
@@ -56,7 +56,7 @@
     if (el) el.textContent = String(getFavs().length);
   }
 
-  // ---------- Render dish cards using template literals only ----------
+  // ---------- Render dish cards ----------
   function dishCard(v) {
     const isFav = getFavs().includes(v.id);
     return `
@@ -76,7 +76,8 @@
     const container = $("#cardsContainer") || $("#recipesList");
     if (!container) return;
     container.innerHTML = list.map(dishCard).join("");
-    // Attach event listeners
+
+    // Favorites
     container.querySelectorAll(".fav-btn").forEach(btn => {
       btn.addEventListener("click", (e) => {
         const id = Number(btn.dataset.id);
@@ -86,6 +87,8 @@
         btn.setAttribute("aria-pressed", favs.includes(id));
       });
     });
+
+    // Save recipes
     container.querySelectorAll(".save-recipe").forEach(btn => {
       btn.addEventListener("click", (e) => {
         const id = Number(btn.dataset.id);
@@ -93,22 +96,26 @@
         if (item) saveRecipeFromDish(item);
       });
     });
+
     refreshFavCount();
+
+    // ✅ Add recipe click handler
+    attachRecipeClicks();
   }
 
-  // ---------- Filtering and searching ----------
+  // ---------- Filtering & searching ----------
   function applyFilterSearch() {
     const filterEl = $("#filter");
     const searchEl = $("#search");
     const filter = filterEl ? filterEl.value : "all";
     const search = searchEl ? searchEl.value.trim().toLowerCase() : "";
-    let results = dishes.slice(); // copy
+    let results = dishes.slice();
     if (filter && filter !== "all") results = results.filter(d => d.region === filter);
     if (search) results = results.filter(d => (`${d.title} ${d.text}`).toLowerCase().includes(search));
     renderCards(results);
   }
 
-  // ---------- Recipes saved locally ----------
+  // ---------- Recipes ----------
   function getRecipes() {
     return JSON.parse(localStorage.getItem(LS_RECIPES) || "[]");
   }
@@ -123,7 +130,6 @@
     setRecipes(arr);
   }
   function saveRecipeFromDish(dish) {
-    // Build recipe object from dish (demonstrates conditional branching)
     const recipe = {
       title: dish.title,
       region: dish.region,
@@ -139,13 +145,13 @@
     renderSavedRecipes();
   }
   function renderSavedRecipes() {
-    const list = $("#savedList") || $("#savedList");
+    const list = $("#savedList");
     if (!list) return;
     const arr = getRecipes();
     list.innerHTML = arr.length ? arr.map(r => `<li>${r.title} (${r.region})</li>`).join("") : "<li>No saved recipes</li>";
   }
 
-  // ---------- Contact messages (form) ----------
+  // ---------- Messages ----------
   function getMessages() {
     return JSON.parse(localStorage.getItem(LS_MESSAGES) || "[]");
   }
@@ -170,9 +176,11 @@
   }
 
   // ---------- Utilities ----------
-  function escapeHTML(s){ return String(s).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;"); }
+  function escapeHTML(s) {
+    return String(s).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;");
+  }
 
-  // ---------- Form handlers (recipes and contact) ----------
+  // ---------- Forms ----------
   function handleRecipeForm() {
     const form = $("#recipeForm");
     if (!form) return;
@@ -205,9 +213,8 @@
       const email = (fd.get("email") || "").toString().trim();
       const message = (fd.get("message") || "").toString().trim();
 
-      // basic validation (conditional branching)
       if (!name || name.length < 2) { status.textContent = "Please enter a name (2+ characters)."; return; }
-      if (!/^\S+@\S+\.\S+$/.test(email)) { status.textContent = "Please enter a valid email address."; return; }
+      if (!/^\S+@\S+\.\S+$/.test(email)) { status.textContent = "Please enter a valid email."; return; }
       if (!message || message.length < 8) { status.textContent = "Message must be at least 8 characters."; return; }
 
       saveMessage({ name, email, message });
@@ -217,7 +224,7 @@
     $("#clearMessages")?.addEventListener("click", clearMessages);
   }
 
-  // ---------- Nav toggle (mobile) ----------
+  // ---------- Navigation ----------
   function initNavToggle() {
     const toggles = $$(".nav-toggle");
     toggles.forEach(btn => {
@@ -231,22 +238,33 @@
     });
   }
 
-  // ---------- Init (startup) ----------
+  // ---------- Recipe Details Navigation ----------
+  function openRecipeDetail(id) {
+    localStorage.setItem("selectedRecipeId", String(id));
+    location.href = "recipe-details.html";
+  }
+
+  function attachRecipeClicks() {
+    const cards = document.querySelectorAll(".card[data-id]");
+    cards.forEach(card => {
+      card.addEventListener("click", (e) => {
+        if (e.target.closest("button")) return; // don't trigger when clicking buttons
+        const id = card.getAttribute("data-id");
+        if (id) openRecipeDetail(id);
+      });
+    });
+  }
+
+  // ---------- Init ----------
   function init() {
-    // set years
     const year = new Date().getFullYear();
-    $$("#year").forEach(n => n.textContent = String(year));
-    $$("#year2").forEach(n => n.textContent = String(year));
-    $$("#year3").forEach(n => n.textContent = String(year));
-    $$("#year4").forEach(n => n.textContent = String(year));
-    $$("#year5").forEach(n => n.textContent = String(year));
+    $$("#year, #year2, #year3, #year4, #year5").forEach(n => n.textContent = String(year));
 
     updateVisits();
     refreshFavCount();
     renderSavedRecipes();
     renderMessages();
 
-    // If index page: render dishes and attach controls
     if ($("#cardsContainer")) {
       renderCards(dishes);
       $("#filter")?.addEventListener("change", applyFilterSearch);
@@ -257,29 +275,25 @@
       $("#clearFavs")?.addEventListener("click", () => { setFavs([]); renderCards(dishes); });
     }
 
-    // If recipes page: render available dishes into recipes list (so user can 'save as recipe')
     if ($("#recipesList")) {
-      // combine initial dish list into the recipes list on that page
       renderCards(dishes);
       handleRecipeForm();
-      $("#savedList") && renderSavedRecipes();
+      renderSavedRecipes();
     }
 
-    // If contact page: wire contact handlers
     if ($("#contactForm")) {
       handleContactForm();
       renderMessages();
     }
 
     initNavToggle();
-    // highlight current nav link (simple)
+
     const current = location.pathname.split("/").pop() || "index.html";
     $$("nav a").forEach(a => {
       if (a.getAttribute("href") === current) a.classList.add("active");
     });
   }
 
-  // run when DOM ready
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init);
   } else init();

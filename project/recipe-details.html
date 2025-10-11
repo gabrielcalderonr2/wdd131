@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Recipe Details — Flavors of Ecuador</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Open+Sans:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <img src="images/siteplanlogo.png" alt="logo" class="logo" width="84" height="84">
+      <div>
+        <h1 class="site-title">Flavors of Ecuador</h1>
+        <p class="site-tag">Recipe Details</p>
+      </div>
+    </div>
+    <nav class="main-nav">
+      <ul class="nav-list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="recipes.html" class="active">Recipes</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="page-grid">
+    <section id="recipeDetail" class="recipe-detail">
+      <!-- content injected by JS -->
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year4"></span> Flavors of Ecuador</p>
+  </footer>
+
+  <script src="scripts/script.js" defer></script>
+  <script defer>
+  document.addEventListener("DOMContentLoaded", () => {
+    const id = Number(localStorage.getItem("selectedRecipeId"));
+    const section = document.getElementById("recipeDetail");
+    if (!id || !section) return;
+    const data = JSON.parse(localStorage.getItem("foe_recipes") || "[]");
+    const dishes = [
+      { id: 1, title: "Ceviche", region: "coast", img: "images/ceviche.jpg", text: "Fresh seafood marinated in lime, served with onions and cilantro." },
+      { id: 2, title: "Locro de Papa", region: "sierra", img: "images/locro.jpg", text: "Potato and cheese soup from the Andes — warm and hearty." },
+      { id: 3, title: "Maito", region: "amazon", img: "images/maito.jpg", text: "Fish or chicken wrapped in leaves and steamed (Amazon technique)." },
+      { id: 4, title: "Bolón de Verde", region: "coast", img: "images/bolon.jpg", text: "Green plantain ball often served for breakfast on the coast." }
+    ];
+    const all = [...dishes, ...data];
+    const r = all.find(x => Number(x.id) === id);
+    if (!r) {
+      section.innerHTML = `<p>Recipe not found.</p>`;
+      return;
+    }
+    section.innerHTML = `
+      <article class="card detail-card">
+        <img src="${r.img || 'images/default.jpg'}" alt="${r.title}">
+        <h2>${r.title}</h2>
+        <p><strong>Region:</strong> ${r.region}</p>
+        <p>${r.text || ''}</p>
+        <h3>Ingredients</h3>
+        <ul>${(r.ingredients || []).map(i => `<li>${i}</li>`).join("")}</ul>
+        <h3>Instructions</h3>
+        <p>${r.instructions || ''}</p>
+        <p><a href="recipes.html">← Back to Recipes</a></p>
+      </article>
+    `;
+  });
+  </script>
+</body>
+</html>
