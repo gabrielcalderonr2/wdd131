@@ -56,17 +56,14 @@ body{
 }
 .nav-toggle{display:none;background:transparent;border:0;color:white;font-size:1.1rem}
 
-/* Layout grid matching wireframe */
-.page-grid{
-  max-width:var(--max-width);
-  margin:1.25rem auto;
-  padding:0 1rem;
-  display:grid;
-  grid-template-columns: 1fr 320px;
-  grid-template-areas:
-    "main sidebar";
-  gap:1rem;
+
+.page-grid {
+  max-width: var(--max-width);
+  margin: 1.25rem auto;
+  padding: 0 1rem;
+  display: block;
 }
+
 
 /* Main / sections */
 main, .region-section, .recipes-section, .fun-section, .intro, .popular-dishes{
